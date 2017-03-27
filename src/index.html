@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='inventory'>
+<head>
+  <meta charset="utf-8">
+  <title>Shopular</title>
+</head>
+<body>
+  <header ng-controller='HeaderController as header'>
+      <h1>{{header.title}}</h1>
+  </header>
+  <table ng-controller='InventoryController as inventoryctrl'>
+    <thead>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Color</th>
+      <tr ng-repeat='item in inventoryctrl.items'>
+        <td>{{item.name}}</td>
+        <td>{{inventoryctrl.getPrice(item) | currency:"USD$" }}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.color}}</td>
+      </tr>
+    </thead>
+  </table>
+  
+  <footer ng-controller=''>
+    <p>Thanks for stopping by!</p>
+  </footer>
+
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
+  <script src='/js/inventory.module.js'></script>
+  <script src='/js/inventory.controller.js'></script>
+</body>
+</html>
