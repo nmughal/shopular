@@ -1,6 +1,6 @@
 # Shopular
 
-This is a web application for a shop's inventory. Given the data, the application includes HTML, Sass, and JS.
+This is a web application for a shop's inventory. The data is given in an array of objects and displayed as a table. Business logic is used inside of the inventory's controller to determine the method of applying tax and discounts to the item's price.
 
 ## Getting Started
 
@@ -20,3 +20,6 @@ npm install sass
 + Bootstrap
 + Sass
 + HTML
+
+## Author
+Nadia Mughal
