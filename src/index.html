@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>Shopular</title>
+  <link rel='stylesheet'href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link href='style.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <header ng-controller='HeaderController as header'>
       <h1>{{header.title}}</h1>
   </header>
-  <table ng-controller='InventoryController as inventoryctrl'>
+  <table class='table table-striped' ng-controller='InventoryController as inventoryctrl'>
     <thead>
       <th>Name</th>
       <th>Price</th>
@@ -16,13 +18,14 @@
       <th>Color</th>
       <tr ng-repeat='item in inventoryctrl.items'>
         <td>{{item.name}}</td>
-        <td>{{inventoryctrl.getPrice(item) | currency:"USD$" }}</td>
+        <td>{{inventoryctrl.getPrice(item) | currency:"USD$" }}
+          <img ng-show='item.discount > 0 ' src='https://tiy-learn-content.s3.amazonaws.com/98350f05-sale_2.png'></td>
         <td>{{item.quantity}}</td>
         <td>{{item.color}}</td>
       </tr>
     </thead>
   </table>
-  
+
   <footer ng-controller=''>
     <p>Thanks for stopping by!</p>
   </footer>
