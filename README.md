@@ -1,8 +1,22 @@
+# Shopular
+
 This is a web application for a shop's inventory. Given the data, the application includes HTML, Sass, and JS.
 
-## Installation
+## Getting Started
 
++ Clone from github
++ Launch in server
+
+## Installation
+Sass
 ```bash
 npm install sass
 ```
-##How to use
+
+## Technologies Used
+
++ Angular
++ JavaScript
++ Bootstrap
++ Sass
++ HTML
