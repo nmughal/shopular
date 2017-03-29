@@ -1,91 +1,102 @@
 <!DOCTYPE html>
 <html lang='en' ng-app='inventory'>
-<head>
-  <meta charset="utf-8">
-  <title>Shopular</title>
-  <link rel='stylesheet'href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-  <link href='style.css' rel='stylesheet' type='text/css'>
-</head>
-<body>
-  <header ng-controller='HeaderController as header'>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Shopular</title>
+    <link rel='stylesheet'href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+  </head>
+
+
+  <body>
+    <header ng-controller='HeaderController as header'>
       <h1>{{header.title}}</h1>
-  </header>
+    </header>
 
-  <main ng-controller='InventoryController as inventoryctrl'>
+    <main ng-controller='InventoryController as inventoryctrl'>
 
-  <form
-    name='additem'
-    ng-submit='additem.$valid && inventoryctrl.addItem(inventoryctrl.newItem)'
-    novalidate>
+      <form
+        name='additem'
+        ng-submit='additem.$valid && inventoryctrl.addItem(inventoryctrl.newItem)'
+        novalidate>
 
-    <input
-      type='text'
-      name='name'
-      placeholder='Item Name'
-      required
-      ng-model='inventoryctrl.newItem.name'>
+          <aside>
+            <p ng-show='additem.name.$touched && !additem.name.$valid'>
+              You must enter a name!
+            </p>
+          </aside>
 
-    <input
-      type='number'
-      name='price'
-      placeholder='Item Price'
-      required min='1'
-      required
-      ng-model='inventoryctrl.newItem.price'>
+          <input
+            type='text'
+            name='name'
+            placeholder='Item Name'
+            required
+            ng-model='inventoryctrl.newItem.name'>
 
-    <input
-      type='number'
-      name='discount'
-      placeholder='Item Discount'
-      required
-      ng-model='inventoryctrl.newItem.discount'>
+          <input
+            type='number'
+            name='price'
+            placeholder='Item Price'
+            required min='1'
+            required
+            ng-model='inventoryctrl.newItem.price'>
 
-    <input
-      type='text'
-      name='color'
-      placeholder='Item Color'
-      required
-      ng-model='inventoryctrl.newItem.color'>
+          <input
+            type='number'
+            name='discount'
+            placeholder='Item Discount'
+            required
+            ng-model='inventoryctrl.newItem.discount'>
 
-    <input
-      type='number'
-      name='quantity'
-      placeholder='Item Quantity'
-      required min='1'
-      required
-      ng-model='inventoryctrl.newItem.quantity'>
+          <input
+            type='text'
+            name='color'
+            placeholder='Item Color'
+            required
+            ng-model='inventoryctrl.newItem.color'>
+
+          <input
+            type='number'
+            name='quantity'
+            placeholder='Item Quantity'
+            required min='1'
+            required
+            ng-model='inventoryctrl.newItem.quantity'>
+
+            <input type='submit' value='Add Item'>
+
+      </form>
+
+      <table class='table table-striped'>
+        <thead>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Color</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat='item in inventoryctrl.items | orderBy:inventoryctrl.sortType:sortReverse'>
+            <td>{{item.name}}</td>
+            <td>{{inventoryctrl.itemPrice(item) | currency:"$" }}
+              <img ng-show='item.discount > 0 ' src='https://tiy-learn-content.s3.amazonaws.com/98350f05-sale_2.png'></td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.color}}</td>
+          </tr>
+        </tbody>
+      </table>
 
 
-    <input type='submit' value='Add Item'>
+    </main>
 
-  </form>
+    <footer>
+      <p>Thanks for stopping by!</p>
+    </footer>
 
-
-  <table class='table table-striped'>
-    <thead>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Color</th>
-      <tr ng-repeat='item in inventoryctrl.items | orderBy:inventoryctrl.sortType:sortReverse'>
-        <td>{{item.name}}</td>
-        <td>{{inventoryctrl.itemPrice(item) | currency:"$" }}
-          <img ng-show='item.discount > 0 ' src='https://tiy-learn-content.s3.amazonaws.com/98350f05-sale_2.png'></td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.color}}</td>
-      </tr>
-    </thead>
-  </table>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
+    <script src='/js/inventory.module.js'></script>
+    <script src='/js/inventory.controller.js'></script>
+  </body>
 
 
-  </main>
-
-  <footer>
-    <p>Thanks for stopping by!</p>
-  </footer>
-
-  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
-  <script src='/js/inventory.module.js'></script>
-  <script src='/js/inventory.controller.js'></script>
-</body>
 </html>
