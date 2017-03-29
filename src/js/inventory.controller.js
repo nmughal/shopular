@@ -32,6 +32,9 @@
 
     vm.newItem = {};
 
+    vm.sortType = 'price';
+    vm.sortReverse = false;
+    
     vm.tax = tax;
 
     /**
@@ -52,9 +55,12 @@
      * @return {void}
      */
     vm.addItem = function addItem(item) {
+      if(typeof(item) !== 'object' || typeof(item.name) !== 'string' || item.name.length < 1) {
+        return;
+      }
 
-      console.log(item);
-      if (typeof(item.name) !== 'string') {
+      item.price = Number(item.price);
+      if(Number.isNan(item.price) ) {
         return;
       }
 
@@ -67,8 +73,8 @@
         quantity: item.quantity
       });
 
-      vm.sortType = 'price';
-      vm.sortReverse = false;
+      vm.newItem = {};
+
 
     };
 
