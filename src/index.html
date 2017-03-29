@@ -10,15 +10,66 @@
   <header ng-controller='HeaderController as header'>
       <h1>{{header.title}}</h1>
   </header>
-  <table class='table table-striped' ng-controller='InventoryController as inventoryctrl'>
+
+  <main ng-controller='InventoryController as inventoryctrl'>
+
+  <form
+    name='additem'
+    ng-submit='additem.$valid && inventoryctrl.addItem(inventoryctrl.newItem)'
+    novalidate>
+
+    <input
+      type='text'
+      name='name'
+      placeholder='Item Name'
+      required
+      ng-model='inventoryctrl.newItem.name'>
+
+    <input
+      type='number'
+      name='price'
+      placeholder='Item Price'
+      required min='1'
+      required
+      ng-model='inventoryctrl.newItem.price'>
+
+    <input
+      type='number'
+      name='discount'
+      placeholder='Item Discount'
+      required
+      ng-model='inventoryctrl.newItem.discount'>
+
+    <input
+      type='text'
+      name='color'
+      placeholder='Item Color'
+      required
+      ng-model='inventoryctrl.newItem.color'>
+
+    <input
+      type='number'
+      name='quantity'
+      placeholder='Item Quantity'
+      required min='1'
+      required
+      ng-model='inventoryctrl.newItem.quantity'>
+
+
+    <input type='submit' value='Add Item'>
+
+  </form>
+
+
+  <table class='table table-striped'>
     <thead>
       <th>Name</th>
       <th>Price</th>
       <th>Quantity</th>
       <th>Color</th>
-      <tr ng-repeat='item in inventoryctrl.items'>
+      <tr ng-repeat='item in inventoryctrl.items | orderBy:inventoryctrl.sortType:sortReverse'>
         <td>{{item.name}}</td>
-        <td>{{inventoryctrl.itemPrice(item) | currency:"USD$" }}
+        <td>{{inventoryctrl.itemPrice(item) | currency:"$" }}
           <img ng-show='item.discount > 0 ' src='https://tiy-learn-content.s3.amazonaws.com/98350f05-sale_2.png'></td>
         <td>{{item.quantity}}</td>
         <td>{{item.color}}</td>
@@ -26,7 +77,10 @@
     </thead>
   </table>
 
-  <footer ng-controller=''>
+
+  </main>
+
+  <footer>
     <p>Thanks for stopping by!</p>
   </footer>
 

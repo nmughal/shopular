@@ -2,7 +2,9 @@
   'use strict';
 
   angular.module('inventory')
-  .controller('HeaderController', function Header() {
+  .controller('HeaderController',
+
+  function Header() {
     this.title = 'Shopular Inventory!';
   })
   .controller('InventoryController', InventoryController);
@@ -12,6 +14,7 @@
 
   function InventoryController() {
     let vm = this;
+
     vm.items = [
       { "id": 2957, "name": "widget", "price": 32, "quantity": 203, "color": "red", "discount": 31 },
       { "id": 89274, "name": "golf club", "price": 98, "quantity": 10, "color": "black", "discount": 0 },
@@ -27,6 +30,8 @@
       { "id": 683, "name": "pillow", "price": 27, "quantity": 10, "color": "black", "discount": 12 }
     ];
 
+    vm.newItem = {};
+
     vm.tax = tax;
 
     /**
@@ -39,6 +44,34 @@
       let discountPrice = item.price - item.discount;
       return discountPrice * (tax + 1);
     };
+
+
+    /**
+     * Add a name to the list
+     * @param {String} name Should contain a string
+     * @return {void}
+     */
+    vm.addItem = function addItem(item) {
+
+      console.log(item);
+      if (typeof(item.name) !== 'string') {
+        return;
+      }
+
+      vm.items.push({
+        id: 13,
+        name: item.name,
+        price: item.price,
+        discount: item.discount,
+        color: item.color,
+        quantity: item.quantity
+      });
+
+      vm.sortType = 'price';
+      vm.sortReverse = false;
+
+    };
+
 
   }
 
