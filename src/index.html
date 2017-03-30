@@ -70,10 +70,10 @@
 
       <table class='table table-striped'>
         <thead>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Color</th>
+          <th ng-click='inventoryctrl.changeSort('name')'>Name</th>
+          <th ng-click='inventoryctrl.changeSort('price')'>Price</th>
+          <th ng-click='inventoryctrl.changeSort('quantity')'>Quantity</th>
+          <th ng-click='inventoryctrl.changeSort('color')'>Color</th>
         </thead>
         <tbody>
           <tr ng-repeat='item in inventoryctrl.items | orderBy:inventoryctrl.sortType:sortReverse'>
@@ -96,6 +96,7 @@
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
     <script src='/js/inventory.module.js'></script>
     <script src='/js/inventory.controller.js'></script>
+    <script src='/js/inventory.service.js'></script>
   </body>
 
 

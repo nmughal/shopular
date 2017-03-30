@@ -2,39 +2,27 @@
   'use strict';
 
   angular.module('inventory')
-  .controller('HeaderController',
+    .controller('InventoryController', InventoryController);
 
-  function Header() {
-    this.title = 'Shopular Inventory!';
-  })
-  .controller('InventoryController', InventoryController);
-
+  InventoryController.$inject = ['InventoryService'];
 
   let tax = 0.0575;
 
-  function InventoryController() {
+  function InventoryController(InventoryService) {
     let vm = this;
-
-    vm.items = [
-      { "id": 2957, "name": "widget", "price": 32, "quantity": 203, "color": "red", "discount": 31 },
-      { "id": 89274, "name": "golf club", "price": 98, "quantity": 10, "color": "black", "discount": 0 },
-      { "id": 64, "name": "iPhone", "price": 499, "quantity": 2, "color": "white", "discount": 0 },
-      { "id": 87363, "name": "bonzai tree", "price": 76, "quantity": 2, "color": "green", "discount": 0 },
-      { "id": 1736, "name": "towel", "price": 55, "quantity": 30, "color": "brown", "discount": 10 },
-      { "id": 4836, "name": "dog bed", "price": 99, "quantity": 10, "color": "beige", "discount": 50 },
-      { "id": 829, "name": "waste basket", "price": 15, "quantity": 40, "color": "silver", "discount": 0 },
-      { "id": 46, "name": "guitar", "price": 899, "quantity": 0, "color": "blue", "discount": 150 },
-      { "id": 17456, "name": "matcha tea", "price": 42, "quantity": 4, "color": "green", "discount": 11 },
-      { "id": 3292, "name": "enlightenment", "price": 99999, "quantity": 1, "color": "red", "discount": 0 },
-      { "id": 533, "name": "eggs", "price": 5, "quantity": 12, "color": "brown", "discount": 1 },
-      { "id": 683, "name": "pillow", "price": 27, "quantity": 10, "color": "black", "discount": 12 }
-    ];
 
     vm.newItem = {};
 
     vm.sortType = 'price';
     vm.sortReverse = false;
-    
+
+    vm.all = InventoryService.getAllItems();
+
+    vm.add = function add(item) {
+      InventoryService.addStudent(student);
+      vm.newItem = {};
+    };
+
     vm.tax = tax;
 
     /**
@@ -49,34 +37,12 @@
     };
 
 
-    /**
-     * Add a name to the list
-     * @param {String} name Should contain a string
-     * @return {void}
-     */
-    vm.addItem = function addItem(item) {
-      if(typeof(item) !== 'object' || typeof(item.name) !== 'string' || item.name.length < 1) {
-        return;
-      }
-
-      item.price = Number(item.price);
-      if(Number.isNan(item.price) ) {
-        return;
-      }
-
-      vm.items.push({
-        id: 13,
-        name: item.name,
-        price: item.price,
-        discount: item.discount,
-        color: item.color,
-        quantity: item.quantity
-      });
-
-      vm.newItem = {};
-
+    vm.changeSort = function changeSort(sortField) {
+      vm.sortType = sortField;
+      vm.sortReverse = !vm.sortReverse;
 
     };
+
 
 
   }
