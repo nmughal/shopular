@@ -10,22 +10,19 @@
 
 
   <body>
-    <header ng-controller='HeaderController as header'>
-      <h1>{{header.title}}</h1>
+    <header>
+      <h1>Shopular</h1>
     </header>
 
     <main ng-controller='InventoryController as inventoryctrl'>
 
       <form
         name='additem'
-        ng-submit='additem.$valid && inventoryctrl.addItem(inventoryctrl.newItem)'
+        ng-submit='additem.$valid && inventoryctrl.add(inventoryctrl.newItem)'
         novalidate>
 
-          <aside>
             <p ng-show='additem.name.$touched && !additem.name.$valid'>
-              You must enter a name!
-            </p>
-          </aside>
+              You must enter a name!</p>
 
           <input
             type='text'
@@ -70,13 +67,13 @@
 
       <table class='table table-striped'>
         <thead>
-          <th ng-click='inventoryctrl.changeSort('name')'>Name</th>
-          <th ng-click='inventoryctrl.changeSort('price')'>Price</th>
-          <th ng-click='inventoryctrl.changeSort('quantity')'>Quantity</th>
-          <th ng-click='inventoryctrl.changeSort('color')'>Color</th>
+          <th ng-click='inventoryctrl.changeSort("name")'>Name</th>
+          <th ng-click='inventoryctrl.changeSort("price")'>Price</th>
+          <th ng-click='inventoryctrl.changeSort("quantity")'>Quantity</th>
+          <th ng-click='inventoryctrl.changeSort("color")'>Color</th>
         </thead>
         <tbody>
-          <tr ng-repeat='item in inventoryctrl.items | orderBy:inventoryctrl.sortType:sortReverse'>
+          <tr ng-repeat='item in inventoryctrl.items | orderBy:inventoryctrl.sortType:inventoryctrl.sortReverse'>
             <td>{{item.name}}</td>
             <td>{{inventoryctrl.itemPrice(item) | currency:"$" }}
               <img ng-show='item.discount > 0 ' src='https://tiy-learn-content.s3.amazonaws.com/98350f05-sale_2.png'></td>
@@ -94,9 +91,7 @@
     </footer>
 
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
-    <script src='/js/inventory.module.js'></script>
-    <script src='/js/inventory.controller.js'></script>
-    <script src='/js/inventory.service.js'></script>
+    <script src='/js/app.js'></script>
   </body>
 
 
