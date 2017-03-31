@@ -16,12 +16,13 @@
       * @return {void}
       */
       function addItem(item) {
+
         if(typeof(item) !== 'object' || typeof(item.name) !== 'string' || item.name.length < 1) {
           return;
         }
 
         item.price = Number(item.price);
-        if(Number.isNan(item.price) || item.price < 0.01) {
+        if(Number.isNaN(item.price) || item.price < 0.01) {
           return;
         }
 
@@ -36,10 +37,12 @@
 
         localStorage.setItem('items', angular.toJson(items));
 
-        vm.newItem = {};
-
       }
 
+      /**
+       * Gets the things in the array
+       * @return {void}
+       */
       function getAllItems() {
         return items;
       }
@@ -47,7 +50,7 @@
 
       return {
         addItem: addItem,
-        getAllItems: getAllStudents
+        getAllItems: getAllItems
       };
 
     }

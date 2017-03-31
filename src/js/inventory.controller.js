@@ -16,10 +16,10 @@
     vm.sortType = 'price';
     vm.sortReverse = false;
 
-    vm.all = InventoryService.getAllItems();
+    vm.items = InventoryService.getAllItems();
 
     vm.add = function add(item) {
-      InventoryService.addStudent(student);
+      InventoryService.addItem(item);
       vm.newItem = {};
     };
 
@@ -38,9 +38,12 @@
 
 
     vm.changeSort = function changeSort(sortField) {
+      // if (vm.sortType === sortField) {
+      //   vm.sortReverse = !vm.sortReverse;
+      // };
       vm.sortType = sortField;
       vm.sortReverse = !vm.sortReverse;
-
+      console.log(vm.sortReverse);
     };
 
 
