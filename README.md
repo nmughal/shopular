@@ -8,13 +8,9 @@ This is a web application for a shop's inventory. The data is given in an array 
 + Launch in server
 
 ## Installation
-Install Sass:
-```bash
-npm install sass
+To download dependecies from package.json file:
 ```
-Install Angular:
-```bash
-npm install –-save angular
+npm install
 ```
 
 ## Technologies Used
