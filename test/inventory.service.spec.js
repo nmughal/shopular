@@ -21,13 +21,9 @@
       it('should be able to add an item with the correct info', function() {
         expect(InventoryService.getAllItems().length).to.equal(0);
         let now = Date.now();
-        InventoryService.addItem({
-          name: 'laptop' + now,
-          price: 1000,
-          discount: 300,
-          color: 'grey',
-          quantity: 10
-        });
+        InventoryService.addItem(
+          {name: 'laptop' + now, price: 1000, discount: 300, color: 'grey', quantity: 10}
+        );
         let items = InventoryService.getAllItems();
         expect(items.length).to.equal(1);
         expect(items[0].name).to.equal('laptop' + now);
