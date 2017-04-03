@@ -17,7 +17,7 @@
       localStorage.removeItem('items');
     });
 
-    describe('adding new items', function() {
+    describe('addItem', function() {
       it('should be able to add an item with the correct info', function() {
         expect(InventoryService.getAllItems().length).to.equal(0);
         let now = Date.now();
@@ -46,27 +46,51 @@
         expect(items.length).to.equal(0);
       });
 
-      it('should handle when the price is not a number', function() {
+      it('should reject if when the price is not a number', function() {
         expect(InventoryService.getAllItems().length).to.equal(0);
         InventoryService.addItem(
           {name: 'laptop', price: 'HEY', discount: 50, color: 'grey', quantity: 20}
         );
         let items = InventoryService.getAllItems();
-
         expect(items.length).to.equal(0);
       });
+
+      it('should reject when the discount is not a number', function() {
+        expect(InventoryService.getAllItems().length).to.equal(0);
+        InventoryService.addItem(
+          {name: 'laptop', price: 1000, discount: 'HEY', color: 'grey', quantity: 20}
+        );
+        let items = InventoryService.getAllItems();
+        expect(items.length).to.equal(0);
+      });
+
+      it('should reject when the quantity is not a number', function() {
+        expect(InventoryService.getAllItems().length).to.equal(0);
+        InventoryService.addItem(
+          {name: 'laptop', price: 1000, discount: 100, color: 'grey', quantity: 'HEY'}
+        );
+        let items = InventoryService.getAllItems();
+        expect(items.length).to.equal(0);
+      });
+
+      it('should reject the object if there is only two properties filled in', function() {
+        expect(InventoryService.getAllItems().length).to.equal(0);
+        InventoryService.addItem(
+          {name: 'laptop', price: 1000}
+        );
+        let items = InventoryService.getAllItems();
+        console.info(items);
+        expect(items.length).to.equal(0);
+      });
+
     });
 
-    describe('getting all items', function() {
-      it('should be able to give us an array of items', function() {
+    describe('getAllItems', function() {
+      it('should return an array of items', function() {
         let result = InventoryService.getAllItems();
         expect(result).to.be.an('array');
       });
     });
-
-
-
-
 
 
 
