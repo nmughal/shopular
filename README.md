@@ -8,10 +8,16 @@ This is a web application for a shop's inventory. The data is given in an array 
 + Launch in server
 
 ## Installation
-To download dependecies from package.json file:
+Download dependencies from package.json file:
 ```
 npm install
 ```
+
+Run Grunt build
+```
+grunt build
+```
+
 
 ## Technologies Used
 
