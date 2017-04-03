@@ -8,6 +8,10 @@
 
   let tax = 0.0575;
 
+  /**
+   * Creates InventoryController's constructor
+   * @param {Object} InventoryService's item object
+   */
   function InventoryController(InventoryService) {
     let vm = this;
 
@@ -37,15 +41,15 @@
     };
 
 
+    /**
+     * Change the order of the list of items
+     * @param  {String} sortField String of the item
+     * @return {void}
+     */
     vm.changeSort = function changeSort(sortField) {
-      // if (vm.sortType === sortField) {
-      //   vm.sortReverse = !vm.sortReverse;
-      // };
       vm.sortType = sortField;
       vm.sortReverse = !vm.sortReverse;
-      console.log(vm.sortReverse);
     };
-
 
 
   }
