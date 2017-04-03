@@ -30,7 +30,6 @@
 
     it('should do stuff', function() {
       expect(InventoryController.newItem).to.be.an('object');
-      expect(InventoryController.all).to.be.an('array');
       expect(InventoryController.add).to.be.a('function');
     });
 
