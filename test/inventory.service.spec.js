@@ -7,7 +7,7 @@
   describe('inventory service', function() {
     let InventoryService;
 
-    beforeEach(module('inventory')); //ng-app
+    beforeEach(module('inventory'));
 
     beforeEach(inject(function(_InventoryService_) {
       InventoryService = _InventoryService_;
